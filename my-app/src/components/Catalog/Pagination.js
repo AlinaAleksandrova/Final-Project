@@ -1,32 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPage } from '../../features/products/productsSlice';
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    const pages = [];
+const Pagination = ({ totalItems, itemsPerPage }) => {
+    const dispatch = useDispatch();
+    const currentPage = useSelector((state) => state.products.currentPage);
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-    for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-    }
+    const handleClick = (page) => {
+        dispatch(setPage(page));
+    };
 
     return (
         <div className="pagination">
-            {pages.map((page) => (
+            {[...Array(totalPages).keys()].map((page) => (
                 <button
                     key={page}
-                    className={page === currentPage ? 'active' : ''}
-                    onClick={() => onPageChange(page)}
+                    className={page + 1 === currentPage ? 'active' : ''}
+                    onClick={() => handleClick(page + 1)}
                 >
-                    {page}
+                    {page + 1}
                 </button>
             ))}
         </div>
     );
-};
-
-Pagination.propTypes = {
-    currentPage: PropTypes.number.isRequired,
-    totalPages: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
 };
 
 export default Pagination;
