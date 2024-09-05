@@ -1,0 +1,21 @@
+.product-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  text-align: center;
+}
+.product-card img {
+  max-width: 100%;
+  height: auto;
+}
+.product-card h3 {
+  margin-top: 10px;
+}
+.product-card a {
+  text-decoration: none;
+  color: inherit;
+}
+.product-card a :hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=ProductCard.css.map */
