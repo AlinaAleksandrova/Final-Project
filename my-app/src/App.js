@@ -4,8 +4,8 @@ import Header from './components/General/Header';
 import Footer from './components/General/Footer';
 import Catalog from './pages/Catalog/Catalog';
 import ProductPage from './pages/Product/ProductPage';
-//import CartPage from './pages/Cart/CartPage';
-//import CheckoutPage from './pages/Checkout/CheckoutPage';
+import CartPage from './pages/Cart/CartPage';
+import CheckoutPage from './pages/Checkout/CheckoutPage';
 
 function App() {
     return (
@@ -14,8 +14,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Catalog />} />
                 {<Route path="/product/:id" element={<ProductPage />} />}
-                {/*<Route path="/cart" element={<CartPage />} />*/}
-                {/*<Route path="/checkout" element={<CheckoutPage />} />*/}
+                {<Route path="/cart" element={<CartPage />} />}
+                {<Route path="/checkout" element={<CheckoutPage />} />}
             </Routes>
             <Footer />
         </Router>

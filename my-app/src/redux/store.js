@@ -3,7 +3,7 @@ import { productApi } from '../api/productApi';
 import cartReducer from '../features/cart/cartSlice';
 import productsReducer from '../features/products/productsSlice';
 
-export const store = configureStore({
+export default configureStore({
     reducer: {
         cart: cartReducer,
         [productApi.reducerPath]: productApi.reducer,
@@ -12,3 +12,4 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(productApi.middleware),
 });
+

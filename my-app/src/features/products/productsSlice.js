@@ -1,15 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Асинхронний thunk для отримання всіх продуктів
+
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
     const response = await axios.get('https://fakestoreapi.com/products');
     return response.data;
 });
 export const fetchProductById = createAsyncThunk('products/fetchProductById', async (id) => {
     const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+    console.log("API response for product:", response.data);
     return response.data;
 });
+
+
 
 const productsSlice = createSlice({
     name: 'products',
@@ -65,10 +68,13 @@ const productsSlice = createSlice({
             .addCase(fetchProductById.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.currentProduct = action.payload;
+                console.log("Product fetched successfully:", action.payload);
             })
             .addCase(fetchProductById.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message;
+                console.error("Failed to fetch product:", action.error.message);
+                state.currentProduct = null;
             });
     },
 });

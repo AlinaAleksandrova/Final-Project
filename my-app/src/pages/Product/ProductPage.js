@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProductById, fetchProducts } from '../../features/products/productsSlice';
+import { fetchProductById } from '../../features/products/productsSlice';
 import { addToCart } from '../../features/cart/cartSlice';
-import ProductCard from '../../components/Catalog/ProductCard';
 import '../../styles/pages/ProductPage.css';
 
 const ProductPage = () => {
@@ -12,31 +11,52 @@ const ProductPage = () => {
 
     const product = useSelector((state) => state.products.currentProduct);
     const status = useSelector((state) => state.products.status);
-    const products = useSelector((state) => state.products.items);
+    const error = useSelector((state) => state.products.error);
     const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
-        dispatch(fetchProductById(id));
-        dispatch(fetchProducts());
+        if (id) {
+            console.log("Fetching product by ID:", id);
+            dispatch(fetchProductById(id));
+        }
     }, [dispatch, id]);
 
+    useEffect(() => {
+        console.log("Product:", product);
+    }, [product]);
 
-    const handleAddToCart = () => {
-        dispatch(addToCart({ ...product, quantity }));
-    };
 
     if (status === 'loading') {
         return <div>Loading product...</div>;
     }
 
+
+    if (status === 'failed') {
+        return <div>Error loading product: {error}</div>;
+    }
+
+
     if (!product) {
         return <div>Product not found</div>;
     }
 
-    const relatedProducts = products.filter(
+
+    const handleAddToCart = () => {
+        if (product && quantity > 0) {
+            const productWithQuantity = { ...product, quantity };
+            console.log("Attempting to add to cart:", productWithQuantity);
+            dispatch(addToCart(productWithQuantity));
+        }
+    };
+
+
+    if (!product.title || !product.image || !product.price || !product.description) {
+        return <div>Some product data is missing</div>;
+    }
+/*    const relatedProducts = products.filter(
         (relatedProduct) =>
             relatedProduct.category === product.category && relatedProduct.id !== product.id
-    );
+    );*/
 
     return (
         <div className="product-page">
@@ -59,7 +79,7 @@ const ProductPage = () => {
 
             <button onClick={handleAddToCart}>Add to Cart</button>
 
-            <div className="related-products">
+            {/*<div className="related-products">
                 <h2>Related Products</h2>
                 <div className="products-list">
                     {relatedProducts.length > 0 ? (
@@ -70,7 +90,7 @@ const ProductPage = () => {
                         <p>No related products found.</p>
                     )}
                 </div>
-            </div>
+            </div>*/}
         </div>
     );
 };
