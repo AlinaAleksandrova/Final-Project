@@ -10,4 +10,24 @@
   p {
     margin-top: 10px;
   }
+  .quantity-selector {
+    margin-top: 10px;
+  }
+
+  .related-products {
+    margin-top: 20px;
+    .products-list {
+      display: flex;
+      gap: 20px;
+      img {
+        max-width: 150px;
+        height: auto;
+      }
+      .col{
+        width: 33%;
+      }
+    }
+  }
+
+
 }

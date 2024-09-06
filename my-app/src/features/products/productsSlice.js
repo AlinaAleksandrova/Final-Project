@@ -56,15 +56,15 @@ const productsSlice = createSlice({
                 state.status = 'failed';
                 state.error = action.error.message;
             });
-    },
-    extraReducersId: (builder) => {
+
+
         builder
             .addCase(fetchProductById.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(fetchProductById.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.currentProduct = action.payload; // Зберігаємо поточний продукт у стані
+                state.currentProduct = action.payload;
             })
             .addCase(fetchProductById.rejected, (state, action) => {
                 state.status = 'failed';
@@ -73,7 +73,6 @@ const productsSlice = createSlice({
     },
 });
 
-// Експортуємо тільки один раз
 export const { filterByCategory, filterByPrice, searchProducts, setPage } = productsSlice.actions;
 export default productsSlice.reducer;
 

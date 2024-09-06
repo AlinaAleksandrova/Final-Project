@@ -11,5 +11,22 @@
 .product-page p {
   margin-top: 10px;
 }
+.product-page .quantity-selector {
+  margin-top: 10px;
+}
+.product-page .related-products {
+  margin-top: 20px;
+}
+.product-page .related-products .products-list {
+  display: flex;
+  gap: 20px;
+}
+.product-page .related-products .products-list img {
+  max-width: 150px;
+  height: auto;
+}
+.product-page .related-products .products-list .col {
+  width: 33%;
+}
 
 /*# sourceMappingURL=ProductPage.css.map */
