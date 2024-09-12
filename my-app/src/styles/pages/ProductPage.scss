@@ -1,33 +1,39 @@
 .product-page {
   padding: 20px;
+
   img {
     max-width: 300px;
     height: auto;
   }
+
   h1 {
     margin-top: 10px;
   }
+
   p {
     margin-top: 10px;
   }
+
   .quantity-selector {
     margin-top: 10px;
   }
 
   .related-products {
     margin-top: 20px;
+
     .products-list {
       display: flex;
       gap: 20px;
+
       img {
         max-width: 150px;
         height: auto;
       }
-      .col{
+
+      .col {
         width: 33%;
       }
     }
   }
-
-
 }
+

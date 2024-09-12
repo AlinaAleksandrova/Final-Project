@@ -1,0 +1,71 @@
+@charset "UTF-8";
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #333;
+  color: #fff;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  margin-right: 15px;
+}
+
+.store-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff6f61; /* Ви можете змінити цей колір */
+}
+
+.header-menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.header-menu a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.header-menu a:hover {
+  color: #ff6f61; /* Колір під час наведення миші */
+}
+
+.header-cart {
+  display: flex;
+  align-items: center;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.cart-icon {
+  font-size: 28px;
+  margin-right: 10px;
+}
+
+.cart-text {
+  font-size: 18px;
+}
+
+.header-cart:hover .cart-text {
+  color: #ff6f61; /* Колір під час наведення миші на корзину */
+}
+
+/*# sourceMappingURL=Header.css.map */
