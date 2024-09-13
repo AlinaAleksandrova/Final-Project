@@ -5,6 +5,7 @@ import ProductCard from '../../components/Catalog/ProductCard';
 import Filters from '../../components/Catalog/Filters';
 import Pagination from '../../components/Catalog/Pagination';
 import '../../styles/pages/Catalog.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Catalog = () => {
     const dispatch = useDispatch();
@@ -25,25 +26,31 @@ const Catalog = () => {
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
     return (
-        <div className="catalog">
-            <Filters />
-            <div className="products-list row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {status === 'loading' ? (
-                    <p>Loading...</p>
-                ) : error ? (
-                    <p>Error: {error}</p>
-                ) : (
-                    currentProducts.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))
-                )}
+        <div className="container catalog mt-5">
+            <div className="row">
+                <div className="col-lg-3 col-md-4 mb-4">
+                    <Filters />
+                </div>
+                <div className="col-lg-9 col-md-8">
+                    <div className="products-list">
+                        {status === 'loading' ? (
+                            <p>Loading...</p>
+                        ) : error ? (
+                            <p>Error: {error}</p>
+                        ) : (
+                            currentProducts.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))
+                        )}
+                    </div>
+
+                    <div className="d-flex justify-content-center mt-4">
+                        <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} />
+                    </div>
+                </div>
             </div>
-            <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} />
         </div>
     );
 };
 
 export default Catalog;
-
-
-
