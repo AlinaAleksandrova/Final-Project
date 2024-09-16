@@ -12,10 +12,15 @@ const cartSlice = createSlice({
             if (existingItem) {
                 existingItem.quantity += action.payload.quantity;
             } else {
-                const newItem = { ...action.payload, quantity: action.payload.quantity || 1 };
-                state.items = [...state.items, newItem]; // Додаємо товар до масиву
+                state.items.push({
+                    id: action.payload.id,
+                    title: action.payload.title,
+                    price: action.payload.price,
+                    image: action.payload.image,
+                    quantity: action.payload.quantity
+                });
             }
-
+            state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
             console.log("Cart items after adding:", JSON.parse(JSON.stringify(state.items)));
         },
         updateCartQuantity: (state, action) => {
@@ -25,7 +30,8 @@ const cartSlice = createSlice({
             }
         },
         removeFromCart: (state, action) => {
-            state.items = state.items.filter((item) => item.id !== action.payload);
+            state.items = state.items.filter(item => item.id !== action.payload);
+            state.totalItems = state.items.reduce((total, item) => total + item.quantity, 0);
         },
     },
 });

@@ -38,12 +38,12 @@ const ProductPage = () => {
     }
 
     const handleAddToCart = () => {
-        if (product && quantity > 0) {
-            const productWithQuantity = { ...product, quantity };
-            console.log('Attempting to add to cart:', productWithQuantity);
-            dispatch(addToCart(productWithQuantity));
+        if (quantity > 0) {
+            console.log('Adding to cart:', { id: product.id, name: product.name, price: product.price, quantity });
+            dispatch(addToCart({ id: product.id, title: product.name, price: product.price, quantity }));
         }
     };
+
 
     if (!product.title || !product.image || !product.price || !product.description) {
         return <div className="text-danger">Some product data is missing</div>;
